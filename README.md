@@ -13,6 +13,12 @@ $pool->getItem('foo');
 $pool->reportHTML();
 ```
 
+You get something like:
+
+```
+Cache Profile Summary: accessed=>100 / missed=>39 / deleted=>12 / cleaned=>0 / saved=>15 /
+``` 
+
 
 ## Aggregating results
 
