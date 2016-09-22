@@ -1,0 +1,37 @@
+{
+    "name":              "cache/apcu-adapter",
+    "description":       "A PSR-6 compatible cache pool for profiling cache access, hits and misses.",
+    "type":              "library",
+    "license":           "MIT",
+    "minimum-stability": "stable",
+    "keywords":          [
+        "cache",
+        "psr-6",
+        "profile"
+    ],
+    "homepage":          "https://github.com/Corollarium/PSR6-ProfileCachePool/",
+    "authors":           [
+        {
+            "name":     "Corollarium",
+            "homepage": "https://corollarium.com"
+        }
+    ],
+    "require":           {
+        "php":                  "^5.5 || ^7.0",
+        "psr/cache":            "^1.0"
+    },
+    "require-dev":       {
+        "phpunit/phpunit":         "^4.0 || ^5.1"
+    },
+    "provide":           {
+        "psr/cache-implementation": "^1.0"
+    },
+    "autoload":          {
+        "psr-4":                 {
+            "Cache\\Adapter\\Apcu\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    }
+}
