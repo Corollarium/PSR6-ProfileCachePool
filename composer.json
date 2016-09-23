@@ -1,5 +1,5 @@
 {
-    "name":              "cache/apcu-adapter",
+    "name":              "Corollarium/PSR6-ProfileCachePool",
     "description":       "A PSR-6 compatible cache pool for profiling cache access, hits and misses.",
     "type":              "library",
     "license":           "MIT",
