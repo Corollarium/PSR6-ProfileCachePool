@@ -32,13 +32,10 @@ $pool2 = new \Cache\Wrapper\ProfileCachePool(new MyOtherAdapterPool());
 $pool1->getItem('foo');
 $pool2->getItem('bar');
 
-// print cuter statistics in the end
-\Cache\Wrapper\ProfileCachePool::summaryHTML(
-	\Cache\Wrapper\ProfileCachePool::mergeProfileSummaries(
-		[$pool1, $pool2]
-	)
-);
+// merge statistics from several pools together
+$mergedStatistics = \Cache\Wrapper\ProfileCachePool::mergeProfileSummaries([$pool1, $pool2]);
 
-$pool->reportHTML();
+// print cute statistics in the end
+\Cache\Wrapper\ProfileCachePool::summaryHTML($mergedStatistics);
 ```
 
