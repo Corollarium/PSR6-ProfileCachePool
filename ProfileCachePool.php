@@ -55,7 +55,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
      *
      * @return number[]
      */
-    private function zeroStructure() {
+    private static function zeroStructure() {
         return array(
             self::ACCESSED => 0,
             self::MISSED => 0,
@@ -76,7 +76,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
      */
     public static function mergeProfileSummaries(array $profileInterfaces)
     {
-        $total = $this->zeroStructure();
+        $total = static::zeroStructure();
 
         foreach ($profileInterfaces as $c) {
             if ($c instanceof ProfileCachePool) {
