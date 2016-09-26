@@ -28,7 +28,7 @@
     },
     "autoload":          {
         "psr-4":                 {
-            "Corollarium\\Cache": ""
+            "Corollarium\\Cache\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
