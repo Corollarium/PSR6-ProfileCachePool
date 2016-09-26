@@ -11,7 +11,7 @@
  * with this source code in the file LICENSE.
  */
 
-namespace Cache\Wrapper;
+namespace Corollarium\Cache;
 
 class ProfileCachePool implements Psr\Cache\CacheItemPoolInterface
 {
