@@ -13,7 +13,7 @@
 
 namespace Corollarium\Cache;
 
-class ProfileCachePool implements Psr\Cache\CacheItemPoolInterface
+class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
 {
 
     const ACCESSED = 'accessed';
@@ -129,11 +129,11 @@ class ProfileCachePool implements Psr\Cache\CacheItemPoolInterface
 
     /**
      *
-     * @var Psr\Cache\CacheItemPoolInterface
+     * @var \Psr\Cache\CacheItemPoolInterface
      */
     protected $pool;
 
-    public function __construct(Psr\Cache\CacheItemPoolInterface $pool)
+    public function __construct(\Psr\Cache\CacheItemPoolInterface $pool)
     {
         $this->pool = $pool;
     }
@@ -194,7 +194,7 @@ class ProfileCachePool implements Psr\Cache\CacheItemPoolInterface
         return $retval;
     }
 
-    public function save(Psr\Cache\CacheItemInterface $item)
+    public function save(\Psr\Cache\CacheItemInterface $item)
     {
         $retval = $this->pool->save($item);
         if ($retval) {
@@ -203,7 +203,7 @@ class ProfileCachePool implements Psr\Cache\CacheItemPoolInterface
         return $retval;
     }
 
-    public function saveDeferred(Psr\Cache\CacheItemInterface $item)
+    public function saveDeferred(\Psr\Cache\CacheItemInterface $item)
     {
         $retval = $this->pool->save($item);
         if ($retval) {
