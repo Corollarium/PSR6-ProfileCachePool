@@ -28,7 +28,7 @@
     },
     "autoload":          {
         "psr-4":                 {
-            "Cache\\Adapter\\Apcu\\": ""
+            "Corollarium\\Cache": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
