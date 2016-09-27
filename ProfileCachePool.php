@@ -205,7 +205,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
 
     public function saveDeferred(\Psr\Cache\CacheItemInterface $item)
     {
-        $retval = $this->pool->save($item);
+        $retval = $this->pool->saveDeferred($item);
         if ($retval) {
             // we're not sure it's going to be saved, but let's count it anyway.
             $this->profile[static::SAVED] ++;
