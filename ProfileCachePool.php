@@ -33,11 +33,11 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
      * @var array
      */
     protected $profile = array(
-        self::ACCESSED => 0,
-        self::MISSED => 0,
-        self::DELETED => 0,
-        self::CLEANED => 0,
-        self::SAVED => 0
+        static::ACCESSED => 0,
+        static::MISSED => 0,
+        static::DELETED => 0,
+        static::CLEANED => 0,
+        static::SAVED => 0
     );
 
     /**
@@ -57,17 +57,17 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
      */
     private static function zeroStructure() {
         return array(
-            self::ACCESSED => 0,
-            self::MISSED => 0,
-            self::DELETED => 0,
-            self::CLEANED => 0,
-            self::SAVED => 0
+            static::ACCESSED => 0,
+            static::MISSED => 0,
+            static::DELETED => 0,
+            static::CLEANED => 0,
+            static::SAVED => 0
         );
     }
 
     public function resetProfileSummary()
     {
-        $this->profile = $this->zeroStructure();
+        $this->profile = static::zeroStructure();
     }
 
     /**
@@ -104,7 +104,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
         $name = get_class($this->pool);
         echo '<div class="cache-summary"><h2>Cache ' . $name . ' system</h2>';
 
-        $stats = $this->zeroStructure();
+        $stats = static::zeroStructure();
         echo '<ul>';
         foreach ($stats as $key => $val) {
             echo '<li>' . $key . '=' . $val . '</li>';
@@ -141,9 +141,9 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
     public function getItem($key)
     {
         $item = $this->pool->getItem($key);
-        $this->profile[self::ACCESSED] ++;
+        $this->profile[static::ACCESSED] ++;
         if (! $item->isHit()) {
-            $this->profile[self::MISSED] ++;
+            $this->profile[static::MISSED] ++;
         }
         return $item;
     }
@@ -152,9 +152,9 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
     {
         $items = $this->pool->getItems($keys);
         foreach ($items as $key => $item) {
-            $this->profile[self::ACCESSED] ++;
+            $this->profile[static::ACCESSED] ++;
             if (! $item->isHit()) {
-                $this->profile[self::MISSED] ++;
+                $this->profile[static::MISSED] ++;
             }
         }
         return $items;
@@ -169,7 +169,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
     {
         $retval = $this->pool->clear();
         if ($retval) {
-            $this->profile[self::CLEANED] ++;
+            $this->profile[static::CLEANED] ++;
         }
         return $this->pool->clear();
     }
@@ -178,7 +178,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
     {
         $retval = $this->pool->deleteItem($key);
         if ($retval) {
-            $this->profile[self::DELETED] ++;
+            $this->profile[static::DELETED] ++;
         }
         return $retval;
     }
@@ -188,7 +188,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
         $retval = $this->pool->deleteItems($keys);
         foreach ($retval as $r) {
             if ($r) {
-                $this->profile[self::DELETED] ++;
+                $this->profile[static::DELETED] ++;
             }
         }
         return $retval;
@@ -198,7 +198,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
     {
         $retval = $this->pool->save($item);
         if ($retval) {
-            $this->profile[self::SAVED] ++;
+            $this->profile[static::SAVED] ++;
         }
         return $retval;
     }
@@ -208,7 +208,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
         $retval = $this->pool->save($item);
         if ($retval) {
             // we're not sure it's going to be saved, but let's count it anyway.
-            $this->profile[self::SAVED] ++;
+            $this->profile[static::SAVED] ++;
         }
         return $retval;
     }
