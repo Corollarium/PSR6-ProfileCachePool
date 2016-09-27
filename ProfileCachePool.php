@@ -32,13 +32,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
      *
      * @var array
      */
-    protected $profile = array(
-        static::ACCESSED => 0,
-        static::MISSED => 0,
-        static::DELETED => 0,
-        static::CLEANED => 0,
-        static::SAVED => 0
-    );
+    protected $profile = [];
 
     /**
      * Returns basic cache statistics.
@@ -135,6 +129,7 @@ class ProfileCachePool implements \Psr\Cache\CacheItemPoolInterface
 
     public function __construct(\Psr\Cache\CacheItemPoolInterface $pool)
     {
+        $this->profile = static::zeroStructure();
         $this->pool = $pool;
     }
 
